@@ -132,24 +132,29 @@ public class TabManager {
     public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
         if (InventoryTabsClient.NEXT_TAB_KEY_BIND.matchesKey(keyCode, scanCode)) {
             int currentTabIndex = tabs.indexOf(currentTab);
-
-            if (InputUtil.isKeyPressed(MinecraftClient.getInstance().getWindow().getHandle(),
-                    GLFW.GLFW_KEY_LEFT_SHIFT)) {
-                if (currentTabIndex > 0) {
-                    onTabClick(tabs.get(currentTabIndex - 1));
+            if (currentTabIndex < tabs.size() - 1) {onTabClick(tabs.get(currentTabIndex + 1));}
+                return true;
+        }
+        if (InventoryTabsClient.PREV_TAB_KEY_BIND.matchesKey(keyCode, scanCode)) {
+            int currentTabIndex = tabs.indexOf(currentTab);
+            if (currentTabIndex < tabs.size() + 1) {onTabClick(tabs.get(currentTabIndex - 1));}
+                return true;
+        }
+        if (InventoryTabsClient.MUCHNEXT_TAB_KEY_BIND.matchesKey(keyCode, scanCode)) {
+            int currentTabIndex = tabs.indexOf(currentTab);
+            if (currentTabIndex < tabs.size() - 6) {
+                    onTabClick(tabs.get(currentTabIndex + 6));
                 } else {
                     onTabClick(tabs.get(tabs.size() - 1));
                 }
-                return true;
-            } else {
-                if (currentTabIndex < tabs.size() - 1) {
-                    onTabClick(tabs.get(currentTabIndex + 1));
-                } else {
-                    onTabClick(tabs.get(0));
-                }
 
                 return true;
-            }
+        }
+        if (InventoryTabsClient.MUCHPREV_TAB_KEY_BIND.matchesKey(keyCode, scanCode)) {
+            int currentTabIndex = tabs.indexOf(currentTab);
+            if (currentTabIndex < 6) {onTabClick(tabs.get(0));}
+            if (currentTabIndex < tabs.size() + 6) {onTabClick(tabs.get(currentTabIndex - 6));}
+                return true;
         }
 
         return false;
