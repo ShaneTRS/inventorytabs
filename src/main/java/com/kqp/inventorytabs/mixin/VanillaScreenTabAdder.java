@@ -144,7 +144,7 @@ public class VanillaScreenTabAdder implements TabRenderingHints {
     @Override
     public int getTopRowXOffset() {
         HandledScreen<?> screen = (HandledScreen<?>) (Object) this;
-        if (screen instanceof InventoryScreen) {
+        /*if (screen instanceof InventoryScreen) {
             if (((InventoryScreen) screen).getRecipeBookWidget().isOpen()) {
                 return 77;
             }
@@ -156,7 +156,7 @@ public class VanillaScreenTabAdder implements TabRenderingHints {
             if (((CraftingScreen) screen).getRecipeBookWidget().isOpen()) {
                 return 77;
             }
-        }
+        }*/
 
         return 0;
     }
