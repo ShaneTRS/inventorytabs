@@ -143,10 +143,12 @@ public class TabManager {
         if (InventoryTabsClient.MUCHNEXT_TAB_KEY_BIND.matchesKey(keyCode, scanCode)) {
             int currentTabIndex = tabs.indexOf(currentTab);
             if (currentTabIndex < tabs.size() - 6) {onTabClick(tabs.get(currentTabIndex + 6));}
+            if (currentTabIndex > tabs.size() - 6) {onTabClick(tabs.get(tabs.size() - 1));}
                 return true;
         }
         if (InventoryTabsClient.MUCHPREV_TAB_KEY_BIND.matchesKey(keyCode, scanCode)) {
             int currentTabIndex = tabs.indexOf(currentTab);
+            if (currentTabIndex < 6) {onTabClick(tabs.get(0));}
             if (currentTabIndex > 6) {onTabClick(tabs.get(currentTabIndex - 6));}
                 return true;
         }
